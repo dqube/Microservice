@@ -8,8 +8,13 @@
 
 	<PropertyGroup Condition="'$(TestProject)' == 'true' or '$(OutputType)' == 'Exe'">
 		<IsPackable>False</IsPackable>
+		<ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
+		<SonarQubeExclude>true</SonarQubeExclude>
 	</PropertyGroup>
-
+	<PropertyGroup Condition="$(MSBuildProjectFullPath.Contains('BuildingBlocks'))">
+		<ExcludeFromCodeCoverage>true</ExcludeFromCodeCoverage>
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</PropertyGroup>
 	<PropertyGroup>
 		<BBAbstractionsPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Abstractions\*.csproj</BBAbstractionsPath>
 		<BBAPIPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\API\*.csproj</BBAPIPath>
@@ -30,6 +35,7 @@
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('Gateway')) and $(MSBuildProjectName.EndsWith('API'))">
 		<ProjectReference Include="$(BBFrameworkPath)" />
 	</ItemGroup>	
+	
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('BuildingBlocks')) and $(MSBuildProjectName.EndsWith('Contexts'))">
 		<ProjectReference Include="$(BBAbstractionsPath)" />
 	</ItemGroup>
