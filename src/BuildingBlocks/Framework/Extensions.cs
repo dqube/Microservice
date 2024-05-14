@@ -4,6 +4,7 @@ using CompanyName.MyProjectName.BuildingBlocks.API.CORS;
 using CompanyName.MyProjectName.BuildingBlocks.API.Exceptions;
 using CompanyName.MyProjectName.BuildingBlocks.API.Networking;
 using CompanyName.MyProjectName.BuildingBlocks.API.Swagger;
+using CompanyName.MyProjectName.BuildingBlocks.Auth;
 using CompanyName.MyProjectName.BuildingBlocks.Contexts;
 using CompanyName.MyProjectName.BuildingBlocks.HTTP;
 using CompanyName.MyProjectName.BuildingBlocks.Messaging;
@@ -11,6 +12,7 @@ using CompanyName.MyProjectName.BuildingBlocks.Observability;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Logging;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Metrics;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Tracing;
+using CompanyName.MyProjectName.BuildingBlocks.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -43,13 +45,12 @@ public static class Extensions
             .AddHeadersForwarding(builder.Configuration)
             .AddMessaging(builder.Configuration)
             .AddHealthCheck(builder.Configuration)
-
              .AddMetrics(builder.Configuration)
              .AddTracing(builder.Configuration)
 
             // .AddConsul(builder.Configuration)
             // .AddFabio(builder.Configuration)
-            // .AddSecurity(builder.Configuration)
+            .AddSecurity(builder.Configuration)
             .AddLogger(builder.Configuration);
 
         builder.Services
@@ -68,16 +69,12 @@ public static class Extensions
 
     public static WebApplication UseMicroFramework(this WebApplication app)
     {
-        app
-            .UseHeadersForwarding()
+        app.UseHeadersForwarding()
             .UseCorsPolicy()
             .UseErrorHandling()
             .UseSwaggerDocs()
 
             // .UseAuthentication()
-            .UseRouting()
-
-            // .UseMetrics()
             // .UseAuthorization()
             .UseContexts()
             .UseContextLogger();
