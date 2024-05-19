@@ -7,12 +7,14 @@ using CompanyName.MyProjectName.BuildingBlocks.API.Swagger;
 using CompanyName.MyProjectName.BuildingBlocks.Auth;
 using CompanyName.MyProjectName.BuildingBlocks.Contexts;
 using CompanyName.MyProjectName.BuildingBlocks.HTTP;
+using CompanyName.MyProjectName.BuildingBlocks.Jobs;
 using CompanyName.MyProjectName.BuildingBlocks.Messaging;
 using CompanyName.MyProjectName.BuildingBlocks.Observability;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Logging;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Metrics;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Tracing;
 using CompanyName.MyProjectName.BuildingBlocks.Security;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -47,6 +49,7 @@ public static class Extensions
             .AddHealthCheck(builder.Configuration)
              .AddMetrics(builder.Configuration)
              .AddTracing(builder.Configuration)
+             .AddHangfire(builder.Configuration)
 
             // .AddConsul(builder.Configuration)
             // .AddFabio(builder.Configuration)
@@ -73,6 +76,7 @@ public static class Extensions
             .UseCorsPolicy()
             .UseErrorHandling()
             .UseSwaggerDocs()
+            .UseHangfireDashboard()
 
             // .UseAuthentication()
             // .UseAuthorization()

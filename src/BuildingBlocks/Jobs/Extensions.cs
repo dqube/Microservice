@@ -1,49 +1,34 @@
-﻿using System.Reflection;
-using CompanyName.MyProjectName.BuildingBlocks.Abstractions;
-using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Attributes;
+﻿using CompanyName.MyProjectName.BuildingBlocks.Abstractions;
+using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Quartz;
-using Quartz.Impl;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Jobs;
 
 public static class Extensions
 {
-    public static IServiceCollection AddJobs(
+   public static IServiceCollection AddHangfire(
         this IServiceCollection services,
-        IConfiguration configuration,
-        string modulePart,
-        IEnumerable<Assembly> assemblies = null)
+        IConfiguration configuration)
     {
         var section = configuration.GetSection("quartz");
         var options = section.BindOptions<JobOptions>();
         services.Configure<JobOptions>(section);
-        ISchedulerFactory sf = new StdSchedulerFactory();
-        IScheduler scheduler = sf.GetScheduler().Result;
-        services.AddSingleton(scheduler);
-        var types = assemblies.Where(x => x.FullName is not null && x.FullName.Contains(modulePart)).SelectMany(x => x.GetTypes()).ToArray();
+        services.AddHangfire(configuration => configuration
+        .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+        .UseSimpleAssemblyNameTypeSerializer()
+        .UseRecommendedSerializerSettings()
+        .UseSqlServerStorage(options.ConnectionString, new SqlServerStorageOptions
+        {
+            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+            QueuePollInterval = TimeSpan.Zero,
+            UseRecommendedIsolationLevel = true,
+            DisableGlobalLocks = true
+        }));
 
-        var jobTypes = types
-            .Where(t => typeof(IJob).IsAssignableFrom(t) && !t.IsAbstract)
-            .ToList();
-
-        jobTypes.ForEach(job =>
-                {
-                    var attr = job.GetCustomAttribute<JobsAttribute>();
-                    var jobKey = new JobKey(attr.Name);
-                    var jobConfig = options.Jobs.FirstOrDefault(x => x.Key == attr.Name).Value;
-                    services.AddQuartz(q =>
-                    {
-                        q.AddJob(job, jobKey);
-                        q.AddTrigger(opts => opts
-                        .ForJob(jobKey)
-                        .WithIdentity(attr.TriggerName)
-                        .WithSimpleSchedule(x => x.WithIntervalInSeconds(jobConfig.Interval).RepeatForever()));
-                    });
-                });
-
-        services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+        services.AddHangfireServer();
         return services;
     }
 }

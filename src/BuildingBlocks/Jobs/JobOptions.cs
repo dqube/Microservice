@@ -2,6 +2,8 @@
 
 public sealed class JobOptions
 {
+    public string ConnectionString { get; set; } = string.Empty;
+
     public Dictionary<string, QuartzJobs> Jobs { get; set; } = new();
 
     public sealed class QuartzJobs

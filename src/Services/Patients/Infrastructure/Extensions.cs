@@ -2,6 +2,7 @@
 using CompanyName.MyProjectName.Patients.Domain.Patients.Repositories;
 using CompanyName.MyProjectName.Patients.Infrastructure.DAL;
 using CompanyName.MyProjectName.Patients.Infrastructure.DAL.Repositories;
+using CompanyName.MyProjectName.Patients.Infrastructure.Jobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,8 +14,8 @@ internal static class Extensions
     {
         services
             .AddScoped<IPatientRepository, PatientRepository>()
+            .AddTransient<ITimerService, TimerService>()
             .AddMSSqlServer<PatientsDbContext>("patient");
-
         return services;
 
         // .AddUnitOfWork<PatientsUnitOfWork>();

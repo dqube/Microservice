@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" >
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <InternalsVisibleTo Include="CompanyName.MyProjectName.Patients.Application"></InternalsVisibleTo>
     <InternalsVisibleTo Include="CompanyName.MyProjectName.Patients.Api"></InternalsVisibleTo>
