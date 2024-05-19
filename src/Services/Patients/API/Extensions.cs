@@ -1,4 +1,6 @@
-﻿using CompanyName.MyProjectName.Patients.Application;
+﻿using CompanyName.MyProjectName.BuildingBlocks.Abstractions;
+using CompanyName.MyProjectName.BuildingBlocks.Jobs;
+using CompanyName.MyProjectName.Patients.Application;
 using CompanyName.MyProjectName.Patients.Domain;
 using CompanyName.MyProjectName.Patients.Infrastructure;
 using CompanyName.MyProjectName.Patients.Infrastructure.Jobs;
@@ -15,12 +17,14 @@ internal static class Extensions
             .AddDomain()
             .AddInfrastructure(configuration);
     }
-}
 
-internal static class Jobs
-{
-    public static void Register()
+    public static IApplicationBuilder UseRecurringJobs(this WebApplication app)
     {
-        RecurringJob.AddOrUpdate<ITimerService>("print-time", service => service.PrintNow(), Cron.Minutely);
+        var recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
+        var configuration = app.Configuration;
+        var section = configuration.GetSection("quartz");
+        var options = section.BindOptions<JobOptions>();
+        recurringJobManager.AddOrUpdate<ITimerService>("print-time", service => service.PrintNow(), options.Jobs["scheduler"].Cron);
+        return app;
     }
 }

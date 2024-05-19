@@ -16,5 +16,5 @@ app.MapGet("/ping", () => "pong").WithTags("API").WithName("Pong");
 
 app.MapHealthChecks("/health").WithTags("API").WithName("Health");
 app.UseMicroFramework();
-Jobs.Register();
+app.UseRecurringJobs();
 app.Run();

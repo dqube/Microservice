@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Hangfire;
+using Microsoft.Extensions.Logging;
 
 namespace CompanyName.MyProjectName.Patients.Infrastructure.Jobs;
 
-public class TimerService : ITimerService
+[DisableConcurrentExecution(timeoutInSeconds: 300)]
+internal class TimerService : ITimerService
 {
     private readonly ILogger<TimerService> logger;
 
@@ -11,8 +13,9 @@ public class TimerService : ITimerService
         this.logger = logger;
     }
 
-    public void PrintNow()
+    public async Task PrintNow()
     {
         logger.LogInformation($"Job Started: {nameof(TimerService)}, started at {DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt")}.");
+        await Task.CompletedTask;
     }
 }

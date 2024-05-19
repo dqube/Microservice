@@ -11,5 +11,7 @@ public sealed class JobOptions
         public int Interval { get; set; } = 3;
 
         public string Name { get; set; } = string.Empty;
+
+        public string Cron { get; set; } = string.Empty;
     }
 }
