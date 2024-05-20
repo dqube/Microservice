@@ -29,6 +29,7 @@ public static class Extensions
         }));
 
         services.AddHangfireServer();
+        GlobalJobFilters.Filters.Add(new LogJobsAttribute());
         return services;
     }
 }
