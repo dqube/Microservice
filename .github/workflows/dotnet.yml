@@ -1,30 +1,32 @@
-# This workflow will build and test multiple projects in the same solution
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build and Test
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "master" ]
-env:
-  PROJECT_NAME: "CompanyName.MyProjectName.Patients.API"
+    branches: [ master ]
 
 jobs:
-  build:
-
+  build-and-test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        project: ['CompanyName.MyProjectName.Patients.API', 'CompanyName.MyProjectName.Gateway.API'] # replace with your project names
+
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
+
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 8.0.x
+
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ matrix.project }}
+
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ${{ matrix.project }} --no-restore
+
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ${{ matrix.project }} --no-build --verbosity normal
