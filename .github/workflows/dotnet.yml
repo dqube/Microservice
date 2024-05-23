@@ -22,8 +22,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
     - name: Restore dependencies
-      run: dotnet restore  "src/Services/Patients/API/CompanyName.MyProjectName.Patients.API.csproj"
+      run: dotnet restore  "src/BuildingBlocks/Abstractions/CompanyName.MyProjectName.BuildingBlocks.Abstractions.csproj"
     - name: Build
       run: dotnet build --no-restore
     - name: Test
