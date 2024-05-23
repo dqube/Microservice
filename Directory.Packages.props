@@ -1,7 +1,7 @@
 ﻿<Project>
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="All" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Abstractions'))">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
