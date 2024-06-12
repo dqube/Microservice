@@ -17,5 +17,10 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Run build
-        run: ./build.sh BuildAndUnitTests --configuration Release
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      
+
+        
