@@ -18,6 +18,7 @@
     <RestoreIgnoreFailedSource>true</RestoreIgnoreFailedSource>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
     <RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
