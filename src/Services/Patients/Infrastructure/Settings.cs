@@ -4,6 +4,8 @@ public class Settings
 {
     public string BackgroundColor { get; set; }
 
+    public string Vault { get; set; }
+
     public int FontSize { get; set; }
 
     public Logging Logging { get; set; }
