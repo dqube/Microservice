@@ -14,6 +14,7 @@ using CompanyName.MyProjectName.BuildingBlocks.Observability.Logging;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Metrics;
 using CompanyName.MyProjectName.BuildingBlocks.Observability.Tracing;
 using CompanyName.MyProjectName.BuildingBlocks.Security;
+using CompanyName.MyProjectName.BuildingBlocks.Security.Vault;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,7 @@ public static class Extensions
 {
     public static WebApplicationBuilder AddMicroFramework(this WebApplicationBuilder builder)
     {
-        // builder.AddVault();
+        builder.AddVault();
         var appOptions = builder.Configuration.GetSection("app").BindOptions<AppOptions>();
         var appInfo = new AppInfo(appOptions.Name, appOptions.Version);
         builder.Services.AddSingleton(appInfo);

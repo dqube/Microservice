@@ -70,6 +70,9 @@
     <PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
     <PackageReference Include="System.ServiceModel.Federation" Version="8.0.0" />
   </ItemGroup>
+  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Security'))">
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.0.0-preview.2" />
+  </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Gateway.API'))">
     <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
   </ItemGroup>

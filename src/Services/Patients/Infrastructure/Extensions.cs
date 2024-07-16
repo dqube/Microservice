@@ -13,9 +13,11 @@ internal static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services
+        .Configure<Settings>(configuration.GetSection("Settings"))
             .AddScoped<IPatientRepository, PatientRepository>()
             .AddTransient<ITimerService, TimerService>()
             .AddMSSqlServer<PatientsDbContext>("patient");
+
         return services;
 
         // .AddUnitOfWork<PatientsUnitOfWork>();

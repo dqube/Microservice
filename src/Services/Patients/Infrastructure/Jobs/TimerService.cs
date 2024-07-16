@@ -1,6 +1,7 @@
 ﻿using CompanyName.MyProjectName.BuildingBlocks.Jobs;
 using Hangfire;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CompanyName.MyProjectName.Patients.Infrastructure.Jobs;
 
@@ -10,8 +11,11 @@ internal class TimerService : ITimerService
 {
     private readonly ILogger<TimerService> logger;
 
-    public TimerService(ILogger<TimerService> logger)
+    public Settings Settings { get; }
+
+    public TimerService(IOptionsSnapshot<Settings> options, ILogger<TimerService> logger)
     {
+        Settings = options.Value;
         this.logger = logger;
     }
 
