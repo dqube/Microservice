@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Security'))">
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.0.0-preview.2" />
+    <PackageReference Include="Azure.Identity" Version="1.12.1" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Gateway.API'))">
     <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
