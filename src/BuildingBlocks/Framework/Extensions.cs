@@ -3,7 +3,7 @@ using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Dispatchers;
 using CompanyName.MyProjectName.BuildingBlocks.API.CORS;
 using CompanyName.MyProjectName.BuildingBlocks.API.Exceptions;
 using CompanyName.MyProjectName.BuildingBlocks.API.Networking;
-using CompanyName.MyProjectName.BuildingBlocks.API.Swagger;
+using CompanyName.MyProjectName.BuildingBlocks.API.OpenAPI;
 using CompanyName.MyProjectName.BuildingBlocks.Auth;
 using CompanyName.MyProjectName.BuildingBlocks.Contexts;
 using CompanyName.MyProjectName.BuildingBlocks.HTTP;
@@ -44,7 +44,7 @@ public static class Extensions
 
             // .AddAuth(builder.Configuration)
             .AddCorsPolicy(builder.Configuration)
-            .AddSwaggerDocs(builder.Configuration)
+            .AddOpenApi(builder.Configuration)
             .AddHeadersForwarding(builder.Configuration)
             .AddMessaging(builder.Configuration)
             .AddHealthCheck(builder.Configuration)
@@ -75,8 +75,9 @@ public static class Extensions
     {
         app.UseHeadersForwarding()
             .UseCorsPolicy()
+            .UseOpenApi()
             .UseErrorHandling()
-            .UseSwaggerDocs()
+            .UseOpenApi()
             .UseHangfireDashboard()
 
             // .UseAuthentication()

@@ -23,7 +23,7 @@
     <Optimize>True</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-  <PropertyGroup Label="ConfigFiles">
+  <!--<PropertyGroup Label="ConfigFiles">
     <StyleCopFile Condition=" '$(StyleCopFile)' == '' ">
       $([MSBuild]::GetPathOfFileAbove('stylecop.json',
       $(MSBuildProjectDirectory)))
@@ -36,5 +36,5 @@
   <ItemGroup Label="ConfigFiles">
     <AdditionalFiles Condition="Exists('$(StyleCopFile)')" Include="$(StyleCopFile)" Visible="false" />
     <None Condition="Exists('$(EditorConfigFile)')" Include="$(EditorConfigFile)" Visible="false" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

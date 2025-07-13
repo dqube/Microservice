@@ -21,13 +21,13 @@ public static class Extensions
         IConfiguration configuration)
     {
         var section = configuration.GetSection(SectionName);
-        var options = section.BindOptions<AuthOptions>();
-        services.Configure<AuthOptions>(section);
-
         if (!section.Exists())
         {
             return services;
         }
+
+        var options = section.Get<AuthOptions>() ?? throw new InvalidOperationException("Auth options section missing.");
+        services.Configure<AuthOptions>(section);
 
         if (options.Jwt is null)
         {
@@ -64,8 +64,8 @@ public static class Extensions
             if (!string.IsNullOrWhiteSpace(options.Certificate.Location))
             {
                 certificate = hasPassword
-                    ? new X509Certificate2(options.Certificate.Location, password)
-                    : new X509Certificate2(options.Certificate.Location);
+                    ? X509CertificateLoader.LoadPkcs12FromFile(options.Certificate.Location, password)
+                    : X509CertificateLoader.LoadPkcs12FromFile(options.Certificate.Location, null);
                 var keyType = certificate.HasPrivateKey ? "with private key" : "with public key only";
                 Console.WriteLine($"Loaded X.509 certificate from location: '{options.Certificate.Location}' {keyType}.");
             }
@@ -74,8 +74,8 @@ public static class Extensions
             {
                 var rawData = Convert.FromBase64String(options.Certificate.RawData);
                 certificate = hasPassword
-                    ? new X509Certificate2(rawData, password)
-                    : new X509Certificate2(rawData);
+                    ? X509CertificateLoader.LoadPkcs12(rawData, password)
+                    : X509CertificateLoader.LoadPkcs12(rawData, null);
                 var keyType = certificate.HasPrivateKey ? "with private key" : "with public key only";
                 Console.WriteLine($"Loaded X.509 certificate from raw data {keyType}.");
             }

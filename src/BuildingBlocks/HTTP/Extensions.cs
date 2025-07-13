@@ -1,3 +1,5 @@
+using System.IO;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using CompanyName.MyProjectName.BuildingBlocks.Abstractions;
 using CompanyName.MyProjectName.BuildingBlocks.HTTP;
@@ -18,11 +20,11 @@ public static class Extensions
     public static IHttpClientBuilder AddHttpClient(this IServiceCollection services, IConfiguration configuration)
     {
         var httpClientSection = configuration.GetSection("httpClient");
-        var httpClientOptions = httpClientSection.BindOptions<HttpClientOptions>();
+        var httpClientOptions = httpClientSection.Get<HttpClientOptions>() ?? new HttpClientOptions();
         services.Configure<HttpClientOptions>(httpClientSection);
 
-        var consulOptions = configuration.GetSection("consul").BindOptions<ConsulOptions>();
-        var fabioOptions = configuration.GetSection("fabio").BindOptions<FabioOptions>();
+        var consulOptions = configuration.GetSection("consul").Get<ConsulOptions>() ?? new ConsulOptions();
+        var fabioOptions = configuration.GetSection("fabio").Get<FabioOptions>() ?? new FabioOptions();
 
         var builder = services
             .AddHttpClient(httpClientOptions.Name)
@@ -35,16 +37,20 @@ public static class Extensions
         var certificateLocation = httpClientOptions.Certificate?.Location;
         if (httpClientOptions.Certificate is not null && !string.IsNullOrWhiteSpace(certificateLocation))
         {
-            var certificate = new X509Certificate2(certificateLocation, httpClientOptions.Certificate.Password);
+            var certificate = X509CertificateLoader.LoadPkcs12(File.ReadAllBytes(certificateLocation), httpClientOptions.Certificate.Password);
             builder.ConfigurePrimaryHttpMessageHandler(() =>
             {
                 var handler = new HttpClientHandler();
-                handler.ClientCertificates.Add(certificate);
+                if (certificate is not null)
+                {
+                    handler.ClientCertificates.Add(certificate);
+                }
+
                 return handler;
             });
         }
 
-        if (httpClientOptions.RequestMasking.Enabled)
+        if (httpClientOptions.RequestMasking?.Enabled == true)
         {
             builder.Services.Replace(ServiceDescriptor.Singleton<IHttpMessageHandlerBuilderFilter, HttpLoggingFilter>());
         }
