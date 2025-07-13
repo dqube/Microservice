@@ -7,9 +7,8 @@
     <Trademark>$(Company)™</Trademark>
     <Product>$(Company) Projects</Product>
   </PropertyGroup>
-
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Configurations>Debug;Release;Production</Configurations>
     <NoWarn>1591;1701;1702;8032;NU1701;AD0001;NU5128;NU1603</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -24,7 +23,6 @@
     <Optimize>True</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
   <PropertyGroup Label="ConfigFiles">
     <StyleCopFile Condition=" '$(StyleCopFile)' == '' ">
       $([MSBuild]::GetPathOfFileAbove('stylecop.json',
@@ -35,7 +33,6 @@
       $(MSBuildProjectDirectory)))
     </EditorConfigFile>
   </PropertyGroup>
-
   <ItemGroup Label="ConfigFiles">
     <AdditionalFiles Condition="Exists('$(StyleCopFile)')" Include="$(StyleCopFile)" Visible="false" />
     <None Condition="Exists('$(EditorConfigFile)')" Include="$(EditorConfigFile)" Visible="false" />
