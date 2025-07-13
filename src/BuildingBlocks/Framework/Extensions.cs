@@ -17,7 +17,9 @@ using CompanyName.MyProjectName.BuildingBlocks.Security;
 using CompanyName.MyProjectName.BuildingBlocks.Security.Vault;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Extensions.DependencyInjection;
+using Scalar.AspNetCore;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Framework;
 
@@ -25,7 +27,7 @@ public static class Extensions
 {
     public static WebApplicationBuilder AddMicroFramework(this WebApplicationBuilder builder)
     {
-        builder.AddVault();
+       // builder.AddVault();
         var appOptions = builder.Configuration.GetSection("app").BindOptions<AppOptions>();
         var appInfo = new AppInfo(appOptions.Name, appOptions.Version);
         builder.Services.AddSingleton(appInfo);
@@ -75,15 +77,14 @@ public static class Extensions
     {
         app.UseHeadersForwarding()
             .UseCorsPolicy()
-            .UseOpenApi()
             .UseErrorHandling()
-            .UseOpenApi()
             .UseHangfireDashboard()
 
             // .UseAuthentication()
             // .UseAuthorization()
             .UseContexts()
             .UseContextLogger();
+        app.UseOpenApi();
 
         return app;
     }

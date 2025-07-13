@@ -3,6 +3,7 @@ using CompanyName.MyProjectName.Patients.API;
 using CompanyName.MyProjectName.Patients.Application;
 using CompanyName.MyProjectName.Patients.Domain;
 using CompanyName.MyProjectName.Patients.Infrastructure;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args).AddMicroFramework();
 builder.Services
@@ -16,5 +17,6 @@ app.MapGet("/ping", () => "pong").WithTags("API").WithName("Pong");
 
 app.MapHealthChecks("/health").WithTags("API").WithName("Health");
 app.UseMicroFramework();
+
 app.UseRecurringJobs();
 app.Run();
