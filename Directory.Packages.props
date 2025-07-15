@@ -28,6 +28,7 @@
     <XunitRunnerVisualStudioVersion>3.1.1</XunitRunnerVisualStudioVersion>
     <MoqVersion>4.20.72</MoqVersion>
     <StyleCopAnalyzersVersion>1.2.0-beta.556</StyleCopAnalyzersVersion>
+    <NpgsqlEntityFrameworkCorePostgreSQLVersion>9.0.4</NpgsqlEntityFrameworkCorePostgreSQLVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCoreVersion)" />
@@ -43,6 +44,7 @@
     <PackageVersion Include="Consul" Version="1.7.14.7" />
     <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="$(MicrosoftAspNetCoreVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(NpgsqlEntityFrameworkCorePostgreSQLVersion)" />
     <PackageVersion Include="OpenTelemetry" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
@@ -135,5 +137,8 @@
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Infrastructure'))">
     <PackageReference Include="StackExchange.Redis" />
     <PackageReference Include="MessagePack"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    
   </ItemGroup>
 </Project>
