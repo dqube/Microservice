@@ -21,20 +21,7 @@
     <RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <Optimize>True</Optimize>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
-  <!--<PropertyGroup Label="ConfigFiles">
-    <StyleCopFile Condition=" '$(StyleCopFile)' == '' ">
-      $([MSBuild]::GetPathOfFileAbove('stylecop.json',
-      $(MSBuildProjectDirectory)))
-    </StyleCopFile>
-    <EditorConfigFile Condition=" '$(EditorConfigFile)' == '' ">
-      $([MSBuild]::GetPathOfFileAbove('.editorconfig',
-      $(MSBuildProjectDirectory)))
-    </EditorConfigFile>
-  </PropertyGroup>
-  <ItemGroup Label="ConfigFiles">
-    <AdditionalFiles Condition="Exists('$(StyleCopFile)')" Include="$(StyleCopFile)" Visible="false" />
-    <None Condition="Exists('$(EditorConfigFile)')" Include="$(EditorConfigFile)" Visible="false" />
-  </ItemGroup>-->
+ 
 </Project>

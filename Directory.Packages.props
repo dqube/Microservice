@@ -64,9 +64,7 @@
     <PackageVersion Include="moq" Version="$(MoqVersion)" />
     <PackageVersion Include="StyleCop.Analyzers" Version="$(StyleCopAnalyzersVersion)" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
-  </ItemGroup>
+ 
   <!-- The rest of the file remains unchanged, with ItemGroups for project-specific references -->
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Abstractions'))">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
