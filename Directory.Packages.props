@@ -1,90 +1,163 @@
 ﻿<Project>
   <PropertyGroup>
-    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <!--<CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <AspnetVersion>8.0.6</AspnetVersion>
-    <MicrosoftExtensionsVersion>8.5.0</MicrosoftExtensionsVersion>
-    <EfVersion>8.0.6</EfVersion>
-    <AspireVersion>8.0.1</AspireVersion>
-    <AspireUnstablePackagesVersion>8.0.0-preview.8.24258.2</AspireUnstablePackagesVersion>
-    <GrpcVersion>2.63.0</GrpcVersion>
-    <DuendeVersion>7.0.5</DuendeVersion>
-    <ApiVersioningVersion>8.1.0</ApiVersioningVersion>-->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <!-- Grouped versions for related packages -->
+    <FluentValidationAspNetCoreVersion>11.3.1</FluentValidationAspNetCoreVersion>
+    <HumanizerVersion>2.14.1</HumanizerVersion>
+    <ScrutorVersion>6.1.0</ScrutorVersion>
+    <!-- Microsoft.EntityFrameworkCore -->
+    <MicrosoftEntityFrameworkCoreVersion>9.0.7</MicrosoftEntityFrameworkCoreVersion>
+    <!-- Microsoft.AspNetCore -->
+    <MicrosoftAspNetCoreVersion>9.0.7</MicrosoftAspNetCoreVersion>
+    <!-- OpenTelemetry -->
+    <OpenTelemetryVersion>1.12.0</OpenTelemetryVersion>
+    <!-- Serilog -->
+    <SerilogVersion>9.0.0</SerilogVersion>
+    <SerilogSinksConsoleVersion>6.0.0</SerilogSinksConsoleVersion>
+    <SerilogSinksFileVersion>7.0.0</SerilogSinksFileVersion>
+    <SerilogSinksOpenTelemetryVersion>4.2.0</SerilogSinksOpenTelemetryVersion>
+    <SerilogSinksSeqVersion>9.0.0</SerilogSinksSeqVersion>
+    <!-- HealthChecks -->
+    <AspNetCoreHealthChecksUrisVersion>9.0.0</AspNetCoreHealthChecksUrisVersion>
+    <!-- Hangfire -->
+    <HangfireVersion>1.8.20</HangfireVersion>
+    <!-- System.ServiceModel -->
+    <SystemServiceModelVersion>8.1.2</SystemServiceModelVersion>
+    <SystemServiceModelDuplexVersion>6.0.0</SystemServiceModelDuplexVersion>
+    <SystemServiceModelSecurityVersion>6.0.0</SystemServiceModelSecurityVersion>
+    <!-- Azure -->
+    <MicrosoftAzureAppConfigurationAspNetCoreVersion>8.2.0</MicrosoftAzureAppConfigurationAspNetCoreVersion>
+    <AzureIdentityVersion>1.14.2</AzureIdentityVersion>
+    <!-- Yarp -->
+    <YarpReverseProxyVersion>2.3.0</YarpReverseProxyVersion>
+    <!-- Test/Analyzers -->
+    <CoverletCollectorVersion>6.0.4</CoverletCollectorVersion>
+    <MicrosoftNETTestSdkVersion>17.14.1</MicrosoftNETTestSdkVersion>
+    <XunitVersion>2.9.3</XunitVersion>
+    <XunitRunnerVisualStudioVersion>3.1.1</XunitRunnerVisualStudioVersion>
+    <MoqVersion>4.20.72</MoqVersion>
+    <StyleCopAnalyzersVersion>1.2.0-beta.556</StyleCopAnalyzersVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="All" />
+    <PackageVersion Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCoreVersion)" />
+    <PackageVersion Include="Humanizer" Version="$(HumanizerVersion)" />
+    <PackageVersion Include="Scrutor" Version="$(ScrutorVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftEntityFrameworkCoreVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.6.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Certificate" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="Consul" Version="1.7.14.7" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="OpenTelemetry" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsoleVersion)" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="$(SerilogVersion)" />
+    <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="$(SerilogSinksOpenTelemetryVersion)" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Uris" Version="$(AspNetCoreHealthChecksUrisVersion)" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="$(SerilogSinksFileVersion)" />
+    <PackageVersion Include="Serilog.Sinks.Seq" Version="$(SerilogSinksSeqVersion)" />
+    <PackageVersion Include="Hangfire" Version="$(HangfireVersion)" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="$(MicrosoftAspNetCoreVersion)" />
+    <PackageVersion Include="System.ServiceModel.Http" Version="$(SystemServiceModelVersion)" />
+    <PackageVersion Include="System.ServiceModel.NetTcp" Version="$(SystemServiceModelVersion)" />
+    <PackageVersion Include="System.ServiceModel.Duplex" Version="$(SystemServiceModelDuplexVersion)" />
+    <PackageVersion Include="System.ServiceModel.Security" Version="$(SystemServiceModelSecurityVersion)" />
+    <PackageVersion Include="System.ServiceModel.Federation" Version="$(SystemServiceModelVersion)" />
+    <PackageVersion Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="$(MicrosoftAzureAppConfigurationAspNetCoreVersion)" />
+    <PackageVersion Include="Azure.Identity" Version="$(AzureIdentityVersion)" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="$(YarpReverseProxyVersion)" />
+    <PackageVersion Include="coverlet.collector" Version="$(CoverletCollectorVersion)" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkVersion)" />
+    <PackageVersion Include="xunit" Version="$(XunitVersion)" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioVersion)" />
+    <PackageVersion Include="moq" Version="$(MoqVersion)" />
+    <PackageVersion Include="StyleCop.Analyzers" Version="$(StyleCopAnalyzersVersion)" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
+  </ItemGroup>
+  <!-- The rest of the file remains unchanged, with ItemGroups for project-specific references -->
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Abstractions'))">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
-    <PackageReference Include="Humanizer" Version="2.14.1" />
-    <PackageReference Include="Scrutor" Version="6.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" />
+    <PackageReference Include="Humanizer" />
+    <PackageReference Include="Scrutor"/>
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.SQLServer'))">
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.API'))">
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.6.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Scalar.AspNetCore" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Auth'))">
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" Version="9.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="9.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.HTTP'))">
-    <PackageReference Include="Consul" Version="1.7.14.7" />
-    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="9.0.7" />
+    <PackageReference Include="Consul" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Observability'))">
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.7" />
-    <PackageReference Include="OpenTelemetry" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.12.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-    <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="4.2.0" />
-    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="9.0.0" />
-    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
+    <PackageReference Include="OpenTelemetry" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" />
+    <PackageReference Include="Serilog.Sinks.File" />
+    <PackageReference Include="Serilog.Sinks.Seq" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Saga'))">
-    <PackageReference Include="Scrutor" Version="6.1.0" />
+    <PackageReference Include="Scrutor" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Jobs'))">
-    <PackageReference Include="Hangfire" Version="1.8.20" />
+    <PackageReference Include="Hangfire" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Wcf'))">
-    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.7" />
-    <PackageReference Include="System.ServiceModel.Http" Version="8.1.2" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="8.1.2" />
-    <PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
-    <PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
-    <PackageReference Include="System.ServiceModel.Federation" Version="8.1.2" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    <PackageReference Include="System.ServiceModel.Http" />
+    <PackageReference Include="System.ServiceModel.NetTcp" />
+    <PackageReference Include="System.ServiceModel.Duplex" />
+    <PackageReference Include="System.ServiceModel.Security" />
+    <PackageReference Include="System.ServiceModel.Federation" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Security'))">
-    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.2.0" />
-    <PackageReference Include="Azure.Identity" Version="1.14.2" />
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" />
+    <PackageReference Include="Azure.Identity" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Gateway.API'))">
-    <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
+    <PackageReference Include="Yarp.ReverseProxy" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Tests'))">
-    <PackageReference Include="coverlet.collector" Version="6.0.4">
+    <PackageReference Include="coverlet.collector">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.1">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="moq" Version="4.20.72" />
+    <PackageReference Include="moq" />
   </ItemGroup>
 </Project>
