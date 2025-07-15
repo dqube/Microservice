@@ -12,20 +12,10 @@
     <MicrosoftAspNetCoreVersion>9.0.7</MicrosoftAspNetCoreVersion>
     <!-- OpenTelemetry -->
     <OpenTelemetryVersion>1.12.0</OpenTelemetryVersion>
-    <!-- Serilog -->
-    <SerilogVersion>9.0.0</SerilogVersion>
-    <SerilogSinksConsoleVersion>6.0.0</SerilogSinksConsoleVersion>
-    <SerilogSinksFileVersion>7.0.0</SerilogSinksFileVersion>
-    <SerilogSinksOpenTelemetryVersion>4.2.0</SerilogSinksOpenTelemetryVersion>
-    <SerilogSinksSeqVersion>9.0.0</SerilogSinksSeqVersion>
     <!-- HealthChecks -->
     <AspNetCoreHealthChecksUrisVersion>9.0.0</AspNetCoreHealthChecksUrisVersion>
     <!-- Hangfire -->
     <HangfireVersion>1.8.20</HangfireVersion>
-    <!-- System.ServiceModel -->
-    <SystemServiceModelVersion>8.1.2</SystemServiceModelVersion>
-    <SystemServiceModelDuplexVersion>6.0.0</SystemServiceModelDuplexVersion>
-    <SystemServiceModelSecurityVersion>6.0.0</SystemServiceModelSecurityVersion>
     <!-- Azure -->
     <MicrosoftAzureAppConfigurationAspNetCoreVersion>8.2.0</MicrosoftAzureAppConfigurationAspNetCoreVersion>
     <AzureIdentityVersion>1.14.2</AzureIdentityVersion>
@@ -60,19 +50,9 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryVersion)" />
-    <PackageVersion Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsoleVersion)" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="$(SerilogVersion)" />
-    <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="$(SerilogSinksOpenTelemetryVersion)" />
     <PackageVersion Include="AspNetCore.HealthChecks.Uris" Version="$(AspNetCoreHealthChecksUrisVersion)" />
-    <PackageVersion Include="Serilog.Sinks.File" Version="$(SerilogSinksFileVersion)" />
-    <PackageVersion Include="Serilog.Sinks.Seq" Version="$(SerilogSinksSeqVersion)" />
     <PackageVersion Include="Hangfire" Version="$(HangfireVersion)" />
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="$(MicrosoftAspNetCoreVersion)" />
-    <PackageVersion Include="System.ServiceModel.Http" Version="$(SystemServiceModelVersion)" />
-    <PackageVersion Include="System.ServiceModel.NetTcp" Version="$(SystemServiceModelVersion)" />
-    <PackageVersion Include="System.ServiceModel.Duplex" Version="$(SystemServiceModelDuplexVersion)" />
-    <PackageVersion Include="System.ServiceModel.Security" Version="$(SystemServiceModelSecurityVersion)" />
-    <PackageVersion Include="System.ServiceModel.Federation" Version="$(SystemServiceModelVersion)" />
     <PackageVersion Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="$(MicrosoftAzureAppConfigurationAspNetCoreVersion)" />
     <PackageVersion Include="Azure.Identity" Version="$(AzureIdentityVersion)" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="$(YarpReverseProxyVersion)" />
@@ -119,26 +99,13 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
-    <PackageReference Include="Serilog.Sinks.Console" />
-    <PackageReference Include="Serilog.AspNetCore" />
-    <PackageReference Include="Serilog.Sinks.OpenTelemetry" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" />
-    <PackageReference Include="Serilog.Sinks.File" />
-    <PackageReference Include="Serilog.Sinks.Seq" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Saga'))">
     <PackageReference Include="Scrutor" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Jobs'))">
     <PackageReference Include="Hangfire" />
-  </ItemGroup>
-  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Wcf'))">
-    <PackageReference Include="System.Security.Cryptography.Pkcs" />
-    <PackageReference Include="System.ServiceModel.Http" />
-    <PackageReference Include="System.ServiceModel.NetTcp" />
-    <PackageReference Include="System.ServiceModel.Duplex" />
-    <PackageReference Include="System.ServiceModel.Security" />
-    <PackageReference Include="System.ServiceModel.Federation" />
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Security'))">
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" />

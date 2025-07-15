@@ -29,7 +29,6 @@
 		<BBMessagePath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Messaging\*.csproj</BBMessagePath>
 		<BBSagaPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Saga\*.csproj</BBSagaPath>
 		<BBJobsPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Jobs\*.csproj</BBJobsPath>
-		<BBWcfPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\WCF\*.csproj</BBWcfPath>
 		<BBStoragePath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Storage\*.csproj</BBStoragePath>
 	</PropertyGroup>
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('Gateway')) and $(MSBuildProjectName.EndsWith('API'))">
