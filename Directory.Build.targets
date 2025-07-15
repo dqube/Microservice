@@ -31,7 +31,9 @@
 		<BBStoragePath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Storage\*.csproj</BBStoragePath>
     <BBApplicationPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Application\*.csproj</BBApplicationPath>
     <BBDomainPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Domain\*.csproj</BBDomainPath>
-	</PropertyGroup>
+    <BBInfrastructurePath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Domain\*.csproj</BBInfrastructurePath>
+	
+</PropertyGroup>
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('Gateway')) and $(MSBuildProjectName.EndsWith('API'))">
 		<ProjectReference Include="$(BBFrameworkPath)" />
 	</ItemGroup>	
@@ -128,5 +130,8 @@
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectFullPath.Contains('BuildingBlocks')) and $(MSBuildProjectName.EndsWith('Domain'))">
 
+  </ItemGroup>
+  <ItemGroup Condition="$(MSBuildProjectFullPath.Contains('BuildingBlocks')) and $(MSBuildProjectName.EndsWith('Infrastructure'))">
+    <ProjectReference Include="$(BBApplicationPath)" />
   </ItemGroup>
 </Project>

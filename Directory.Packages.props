@@ -132,4 +132,8 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="FluentValidation.AspNetCore" />
   </ItemGroup>
+  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Infrastructure'))">
+    <PackageReference Include="StackExchange.Redis" />
+    <PackageReference Include="MessagePack"/>
+  </ItemGroup>
 </Project>
