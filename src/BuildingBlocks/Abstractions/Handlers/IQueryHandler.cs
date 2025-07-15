@@ -2,8 +2,8 @@
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Abstractions.Handlers;
 
-public interface IQueryHandler<in TQuery, TResult>
-    where TQuery : class, IQuery<TResult>
+public interface IQueryHandler<in TQuery, TResponse>
+    where TQuery : class, IQuery<TResponse>
 {
-    Task<TResult> HandleAsync(TQuery query, CancellationToken cancellationToken = default);
+    Task<TResponse> HandleAsync(TQuery query, CancellationToken cancellationToken = default);
 }

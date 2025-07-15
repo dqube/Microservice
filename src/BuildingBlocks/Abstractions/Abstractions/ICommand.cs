@@ -1,10 +1,9 @@
 namespace CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
 
-// Marker interface
-public interface ICommand : IMessage
+public interface ICommand<out TResponse> : IMessage
 {
 }
 
-public interface ICommand<T> : ICommand
+public interface ICommand : ICommand<Unit>
 {
 }

@@ -2,7 +2,8 @@
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Abstractions.Handlers;
 
-public interface IEventHandler<in TEvent> : IMessageHandler<TEvent>
-    where TEvent : class, IEvent
+public interface IMessageHandler<in TMessage>
+    where TMessage : IMessage
 {
+    Task HandleAsync(TMessage message, CancellationToken ct = default);
 }
