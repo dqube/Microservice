@@ -33,6 +33,7 @@
     <PackageVersion Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCoreVersion)" />
     <PackageVersion Include="Humanizer" Version="$(HumanizerVersion)" />
     <PackageVersion Include="Scrutor" Version="$(ScrutorVersion)" />
+    <PackageVersion Include="MessagePack" Version="3.1.4" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftEntityFrameworkCoreVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftAspNetCoreVersion)" />
@@ -54,6 +55,7 @@
     <PackageVersion Include="Hangfire" Version="$(HangfireVersion)" />
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="$(MicrosoftAspNetCoreVersion)" />
     <PackageVersion Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="$(MicrosoftAzureAppConfigurationAspNetCoreVersion)" />
+    <PackageVersion Include="StackExchange.Redis" Version="2.7.20" />
     <PackageVersion Include="Azure.Identity" Version="$(AzureIdentityVersion)" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="$(YarpReverseProxyVersion)" />
     <PackageVersion Include="coverlet.collector" Version="$(CoverletCollectorVersion)" />
@@ -113,6 +115,11 @@
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Gateway.API'))">
     <PackageReference Include="Yarp.ReverseProxy" />
+  </ItemGroup>
+   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Storage'))">
+         <PackageReference Include="StackExchange.Redis" />
+     <PackageReference Include="MessagePack"/>
+
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('Tests'))">
     <PackageReference Include="coverlet.collector">
