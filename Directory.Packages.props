@@ -128,4 +128,8 @@
     </PackageReference>
     <PackageReference Include="moq" />
   </ItemGroup>
+  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Application'))">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="FluentValidation.AspNetCore" />
+  </ItemGroup>
 </Project>
