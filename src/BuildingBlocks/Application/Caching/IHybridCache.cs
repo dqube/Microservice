@@ -1,4 +1,5 @@
-﻿namespace CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
+﻿#nullable enable
+namespace CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
 
 public interface IHybridCache : IDisposable, IAsyncDisposable
 {
@@ -13,3 +14,4 @@ public interface IHybridCache : IDisposable, IAsyncDisposable
     ValueTask<CacheStats> GetStatsAsync(CancellationToken token = default);
     ValueTask ClearRegionAsync(string regionPrefix, CancellationToken token = default);
 }
+#nullable disable

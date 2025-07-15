@@ -1,4 +1,5 @@
-﻿namespace CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
+﻿#nullable enable
+namespace CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
 
 public interface ICacheLayer : IDisposable, IAsyncDisposable
 {
@@ -12,3 +13,4 @@ public interface ICacheLayer : IDisposable, IAsyncDisposable
     ValueTask<bool> ExistsAsync(string key, CancellationToken token = default);
     ValueTask ClearRegionAsync(string regionPrefix, CancellationToken token = default);
 }
+#nullable disable

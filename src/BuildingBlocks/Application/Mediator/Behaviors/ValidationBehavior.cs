@@ -1,4 +1,5 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Application.Mediator.Core;
+﻿#nullable enable
+using CompanyName.MyProjectName.BuildingBlocks.Application.Mediator.Core;
 using System.ComponentModel.DataAnnotations;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Application.Mediator.Behaviors;
@@ -31,3 +32,4 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         return await next(request, cancellationToken);
     }
 }
+#nullable disable

@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Infrastructure.Caching;
 
+#nullable enable
+
 public class MemoryCacheLayer : ICacheLayer
 {
     private readonly IMemoryCache _memoryCache;
@@ -79,3 +81,4 @@ public class MemoryCacheLayer : ICacheLayer
         return ValueTask.CompletedTask;
     }
 }
+#nullable disable

@@ -1,13 +1,16 @@
 ﻿using CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
 using Microsoft.Extensions.Configuration;
 
+#nullable enable
+
 namespace CompanyName.MyProjectName.BuildingBlocks.Infrastructure.Caching;
 
 public sealed class HybridCacheOptions
 {
-    public string RedisConfiguration { get; set; }
+    public string? RedisConfiguration { get; set; }
     public int RedisDatabase { get; set; }
     public IHybridCacheSerializer? Serializer { get; set; }
     public TimeSpan DefaultMemoryExpiration { get; set; } = TimeSpan.FromMinutes(15);
     public TimeSpan DefaultDistributedExpiration { get; set; } = TimeSpan.FromHours(1);
 }
+#nullable disable

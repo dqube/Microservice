@@ -1,4 +1,5 @@
-﻿namespace CompanyName.MyProjectName.BuildingBlocks.Security.Vault;
+﻿#nullable enable
+namespace CompanyName.MyProjectName.BuildingBlocks.Security.Vault;
 
     public class RuntimeSettings
     {
@@ -40,3 +41,4 @@
 
         public string UAMI { get; set; } = string.Empty;
 }
+#nullable disable

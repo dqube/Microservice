@@ -1,4 +1,5 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
+﻿#nullable enable
+using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
 using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -47,3 +48,4 @@ internal sealed class CommandDispatcher : ICommandDispatcher
 #pragma warning restore CS8602
     }
 }
+#nullable disable

@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Concurrent;
 using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
 using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Attributes;
@@ -40,3 +41,4 @@ internal sealed class InboxEventHandlerDecorator<T> : IEventHandler<T>
         return _handler.HandleAsync(@event, cancellationToken);
     }
 }
+#nullable disable

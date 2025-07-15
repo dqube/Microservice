@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 
+#nullable enable
+
 namespace CompanyName.MyProjectName.BuildingBlocks.Infrastructure.Caching;
 // HybridCache.cs
 public sealed class HybridCache : IHybridCache

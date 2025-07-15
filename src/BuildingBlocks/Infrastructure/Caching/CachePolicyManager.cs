@@ -1,4 +1,5 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
+﻿#nullable enable
+using CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
 using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Text.RegularExpressions;

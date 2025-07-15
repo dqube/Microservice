@@ -1,3 +1,4 @@
+#nullable enable
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -11,7 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Auth;
 
-#nullable enable
 public static class Extensions
 {
     private const string SectionName = "auth";

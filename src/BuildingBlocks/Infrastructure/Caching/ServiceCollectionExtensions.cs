@@ -1,4 +1,5 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
+﻿#nullable enable
+using CompanyName.MyProjectName.BuildingBlocks.Application.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

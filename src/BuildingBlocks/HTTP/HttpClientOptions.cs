@@ -1,3 +1,4 @@
+#nullable enable
 namespace CompanyName.MyProjectName.BuildingBlocks.HTTP;
 
 public sealed class HttpClientOptions
@@ -6,9 +7,7 @@ public sealed class HttpClientOptions
 
     public string Type { get; set; } = string.Empty;
 
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     public CertificateOptions? Certificate { get; set; }
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
     public ResiliencyOptions Resiliency { get; set; } = new();
 
@@ -41,3 +40,4 @@ public sealed class HttpClientOptions
         public string MaskTemplate { get; set; } = "***";
     }
 }
+#nullable disable
