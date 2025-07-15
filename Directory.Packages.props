@@ -32,7 +32,6 @@
   <ItemGroup>
     <PackageVersion Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCoreVersion)" />
     <PackageVersion Include="Humanizer" Version="$(HumanizerVersion)" />
-    <PackageVersion Include="Scrutor" Version="$(ScrutorVersion)" />
     <PackageVersion Include="MessagePack" Version="3.1.4" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftEntityFrameworkCoreVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreVersion)" />
@@ -73,7 +72,6 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="FluentValidation.AspNetCore" />
     <PackageReference Include="Humanizer" />
-    <PackageReference Include="Scrutor"/>
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.SQLServer'))">
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
@@ -103,9 +101,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" />
   </ItemGroup>
-  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Saga'))">
-    <PackageReference Include="Scrutor" />
-  </ItemGroup>
+  
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('BuildingBlocks.Jobs'))">
     <PackageReference Include="Hangfire" />
   </ItemGroup>

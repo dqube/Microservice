@@ -72,7 +72,7 @@ public static class Extensions
 
     public static IServiceCollection AddMessagingTracingDecorators(this IServiceCollection services)
     {
-        services.TryDecorate<IMessageBroker, MessageBrokerTracingDecorator>();
+        services.AddTransient<IMessageBroker, MessageBrokerTracingDecorator>();
 
        // services.TryDecorate<IMessageHandler, MessageHandlerTracingDecorator>();
         return services;

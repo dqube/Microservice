@@ -19,8 +19,9 @@ public static class Extensions
     public static IServiceCollection AddLogger(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<ContextLoggingMiddleware>();
-        services.TryDecorate(typeof(ICommandHandler<>), typeof(LoggingCommandHandlerDecorator<>));
-        services.TryDecorate(typeof(IEventHandler<>), typeof(LoggingEventHandlerDecorator<>));
+        services.AddTransient(typeof(ICommandHandler<>), typeof(LoggingCommandHandlerDecorator<>));
+        services.AddTransient(typeof(ICommandHandler<,>), typeof(LoggingCommandHandlerDecorator<,>));
+        services.AddTransient(typeof(IEventHandler<>), typeof(LoggingEventHandlerDecorator<>));
         return services;
     }
 

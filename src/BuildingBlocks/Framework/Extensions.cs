@@ -37,7 +37,6 @@ public static class Extensions
         builder
             .AddLogging().Services
             .AddErrorHandling()
-            .AddHandlers(appOptions.Project)
             .AddDispatchers()
             .AddContexts()
             .AddMemoryCache()

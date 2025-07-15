@@ -22,8 +22,8 @@ public static class Extensions
         }
 
         services.AddHostedService<InboxCleaner>();
-        services.TryDecorate(typeof(ICommandHandler<>), typeof(InboxCommandHandlerDecorator<>));
-        services.TryDecorate(typeof(IEventHandler<>), typeof(InboxEventHandlerDecorator<>));
+        services.AddTransient(typeof(ICommandHandler<>), typeof(InboxCommandHandlerDecorator<>));
+        services.AddTransient(typeof(IEventHandler<>), typeof(InboxEventHandlerDecorator<>));
 
         return services;
     }

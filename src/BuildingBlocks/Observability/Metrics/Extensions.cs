@@ -60,26 +60,9 @@ public static class Extensions
         return services;
     }
 
-    // public static IApplicationBuilder UseMetrics(this IApplicationBuilder app)
-    // {
-    //    var metricsOptions = app.ApplicationServices.GetRequiredService<IOptions<MetricsOptions>>().Value;
-    //    if (!metricsOptions.Enabled)
-    //    {
-    //        return app;
-    //    }
-
-    // if (metricsOptions.Exporter.ToLowerInvariant() is not OltpExporter)
-    //    {
-    //        return app;
-    //    }
-
-    // app.UseOpenTelemetryPrometheusScrapingEndpoint();
-
-    // return app;
-    // }
     public static IServiceCollection AddMessagingMetricsDecorators(this IServiceCollection services)
     {
-        services.TryDecorate<IMessageBroker, MessageBrokerMetricsDecorator>();
+        services.AddTransient<IMessageBroker, MessageBrokerMetricsDecorator>(); // Use Decorate instead of TryDecorate
 
         return services;
     }

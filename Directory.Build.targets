@@ -27,7 +27,6 @@
 		<BBTransactionsPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Transactions\*.csproj</BBTransactionsPath>
 		<BBSQLServerPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\SQLServer\*.csproj</BBSQLServerPath>
 		<BBMessagePath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Messaging\*.csproj</BBMessagePath>
-		<BBSagaPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Saga\*.csproj</BBSagaPath>
 		<BBJobsPath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Jobs\*.csproj</BBJobsPath>
 		<BBStoragePath>$(MSBuildThisFileDirectory)\src\BuildingBlocks\Storage\*.csproj</BBStoragePath>
 	</PropertyGroup>
@@ -92,10 +91,12 @@
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('Services')) and $(MSBuildProjectName.EndsWith('API'))">
 		<ProjectReference Include="$(BBFrameworkPath)" />
 		<ProjectReference Include="..\Infrastructure\*.csproj" />
+     
 	</ItemGroup>
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('Services')) and $(MSBuildProjectName.EndsWith('Application'))">
 		<ProjectReference Include="..\Domain\*.csproj" />
-	</ItemGroup>
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+  </ItemGroup>
 	<ItemGroup Condition="$(MSBuildProjectFullPath.Contains('Services')) and $(MSBuildProjectName.EndsWith('Domain'))">
 		<ProjectReference Include="$(BBAbstractionsPath)" />
 	</ItemGroup>

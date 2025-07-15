@@ -1,7 +1,6 @@
 using System.Reflection;
 using CompanyName.MyProjectName.BuildingBlocks.Saga.Builders;
 using CompanyName.MyProjectName.BuildingBlocks.Saga.Managers;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Saga
 {
