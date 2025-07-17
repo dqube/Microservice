@@ -1,8 +1,7 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
-using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Handlers;
+﻿using CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CompanyName.MyProjectName.BuildingBlocks.Abstractions.Dispatchers;
+namespace CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Dispatchers;
 
 internal sealed class DomainEventDispatcher : IDomainEventDispatcher
 {
@@ -34,12 +33,12 @@ internal sealed class DomainEventDispatcher : IDomainEventDispatcher
             var handlerType = typeof(IDomainEventHandler<>).MakeGenericType(@event.GetType());
             var handlers = scope.ServiceProvider.GetServices(handlerType);
 
-            var handleMethod = handlerType.GetMethod(nameof(IDomainEventHandler<IDomainEvent>.HandleAsync));
+            var handleMethod = handlerType.GetMethod("HandleAsync");
             if (handleMethod is null)
                 continue;
 
             var tasks = handlers
-                .Select(handler => (Task)handleMethod.Invoke(handler, new object[] { @event, cancellationToken }))
+                .Select(handler => (Task)handleMethod.Invoke(handler, new object[] { @event, cancellationToken })!)
                 .Where(task => task is not null);
 
             await Task.WhenAll(tasks);

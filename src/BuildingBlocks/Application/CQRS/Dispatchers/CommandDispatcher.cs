@@ -1,9 +1,8 @@
 ﻿#nullable enable
-using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
-using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Handlers;
+using CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CompanyName.MyProjectName.BuildingBlocks.Abstractions.Dispatchers;
+namespace CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Dispatchers;
 
 internal sealed class CommandDispatcher : ICommandDispatcher
 {

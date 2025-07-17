@@ -1,4 +1,4 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Application.Mediator.Core;
+﻿using CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Core;
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Application.Pagination;
 

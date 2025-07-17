@@ -1,8 +1,7 @@
-﻿using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Abstractions;
-using CompanyName.MyProjectName.BuildingBlocks.Abstractions.Handlers;
+﻿using CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CompanyName.MyProjectName.BuildingBlocks.Abstractions.Dispatchers;
+namespace CompanyName.MyProjectName.BuildingBlocks.Application.CQRS.Dispatchers;
 #nullable enable
 internal sealed class QueryDispatcher : IQueryDispatcher
 {
