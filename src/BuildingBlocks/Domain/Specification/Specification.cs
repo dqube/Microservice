@@ -1,63 +1,48 @@
+using System.Linq.Expressions;
+using System.Linq;
 namespace CompanyName.MyProjectName.BuildingBlocks.Domain.Specification;
 
 public interface ISpecification<T>
 {
-    bool IsSatisfiedBy(T entity);
+    Expression<Func<T, bool>> Criteria { get; }
+    List<Expression<Func<T, object>>> Includes { get; }
+    List<string> IncludeStrings { get; }
+    Expression<Func<T, object>> OrderBy { get; }
+    Expression<Func<T, object>> OrderByDescending { get; }
+    int Take { get; }
+    int Skip { get; }
+    bool IsPagingEnabled { get; }
 }
 
 public abstract class Specification<T> : ISpecification<T>
 {
-    public abstract bool IsSatisfiedBy(T entity);
+    protected Specification(Expression<Func<T, bool>> criteria) => Criteria = criteria;
 
-    public Specification<T> And(Specification<T> specification)
-        => new AndSpecification<T>(this, specification);
+    public Expression<Func<T, bool>> Criteria { get; }
+    public List<Expression<Func<T, object>>> Includes { get; } = new();
+    public List<string> IncludeStrings { get; } = new();
+    public Expression<Func<T, object>> OrderBy { get; private set; }
+    public Expression<Func<T, object>> OrderByDescending { get; private set; }
+    public int Take { get; private set; }
+    public int Skip { get; private set; }
+    public bool IsPagingEnabled { get; private set; } = false;
 
-    public Specification<T> Or(Specification<T> specification)
-        => new OrSpecification<T>(this, specification);
+    protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
+        => Includes.Add(includeExpression);
 
-    public Specification<T> Not()
-        => new NotSpecification<T>(this);
-}
+    protected virtual void AddInclude(string includeString)
+        => IncludeStrings.Add(includeString);
 
-public class AndSpecification<T> : Specification<T>
-{
-    private readonly Specification<T> _left;
-    private readonly Specification<T> _right;
+    protected virtual void ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
+        => OrderBy = orderByExpression;
 
-    public AndSpecification(Specification<T> left, Specification<T> right)
+    protected virtual void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
+        => OrderByDescending = orderByDescendingExpression;
+
+    protected virtual void ApplyPaging(int skip, int take)
     {
-        _left = left;
-        _right = right;
+        Skip = skip;
+        Take = take;
+        IsPagingEnabled = true;
     }
-
-    public override bool IsSatisfiedBy(T entity)
-        => _left.IsSatisfiedBy(entity) && _right.IsSatisfiedBy(entity);
-}
-
-public class OrSpecification<T> : Specification<T>
-{
-    private readonly Specification<T> _left;
-    private readonly Specification<T> _right;
-
-    public OrSpecification(Specification<T> left, Specification<T> right)
-    {
-        _left = left;
-        _right = right;
-    }
-
-    public override bool IsSatisfiedBy(T entity)
-        => _left.IsSatisfiedBy(entity) || _right.IsSatisfiedBy(entity);
-}
-
-public class NotSpecification<T> : Specification<T>
-{
-    private readonly Specification<T> _specification;
-
-    public NotSpecification(Specification<T> specification)
-    {
-        _specification = specification;
-    }
-
-    public override bool IsSatisfiedBy(T entity)
-        => !_specification.IsSatisfiedBy(entity);
 }

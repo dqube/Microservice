@@ -3,7 +3,7 @@
 namespace CompanyName.MyProjectName.BuildingBlocks.Domain.Core;
 
 public abstract class ValidatableEntity<TId, TValue> : Entity<TId, TValue>
-    where TId : IIdentity<TValue>
+    where TId : IStronglyTpeId<TValue>
     where TValue : notnull
 {
     protected ValidatableEntity(TId id) : base(id) { }

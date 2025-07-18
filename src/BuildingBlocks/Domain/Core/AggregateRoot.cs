@@ -2,7 +2,7 @@
 
 namespace CompanyName.MyProjectName.BuildingBlocks.Domain.Core;
 public abstract class AggregateRoot<TId, TKey> : Entity<TId, TKey>
-    where TId : IIdentity<TKey>
+    where TId : IStronglyTpeId<TKey>
     where TKey : notnull
 {
     private readonly List<IDomainEvent> _domainEvents = new();

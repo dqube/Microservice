@@ -126,7 +126,8 @@
 		<Using Include="Xunit" />
 	</ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectFullPath.Contains('BuildingBlocks')) and $(MSBuildProjectName.EndsWith('Application'))">
-    
+    <ProjectReference Include="$(BBDomainPath)" />
+
   </ItemGroup>
   <ItemGroup Condition="$(MSBuildProjectFullPath.Contains('BuildingBlocks')) and $(MSBuildProjectName.EndsWith('Domain'))">
 

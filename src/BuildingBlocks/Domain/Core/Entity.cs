@@ -1,6 +1,6 @@
 ﻿namespace CompanyName.MyProjectName.BuildingBlocks.Domain.Core;
 public abstract class Entity<TId, TKey>
-    where TId : IIdentity<TKey>
+    where TId : IStronglyTpeId<TKey>
     where TKey : notnull
 {
     public TId Id { get; protected set; } = default!;
